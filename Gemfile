@@ -1,5 +1,7 @@
-source 'https://rubygems.org'
-gem 'jekyll'
-gem 'jekyll-archives'
-gem 'jekyll-sitemap'
-gem 'jekyll-paginate'
+source "https://rubygems.org"
+
+gem "jekyll", "~> 3.2.1"
+gem "jekyll-sitemap"
+gem "jekyll-gist"
+gem 'jekyll-mentions'
+gem 'jekyll-feed'

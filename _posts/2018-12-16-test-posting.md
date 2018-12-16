@@ -5,7 +5,7 @@ date:   2018-12-16
 excerpt: "This is test post"
 tag:
 - MongoDB 
-- Spring Data MongoDB
+- SpringDataMongoDB
 comments: true
 ---
 

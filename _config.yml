@@ -1,66 +1,64 @@
-# Jykell configuration
-#markdown: redcarpet
-#highlighter: pygments
-markdown: kramdown
+# Site wide configuration
+
+title: "My Site"
+description: "This is a description of my awesome site."
+logo: # 120x120 px default image used for Twitter summary card
+teaser: # 400x250 px default teaser image used in image archive grid
+locale: en
+url:
+feed:
+  path: atom.xml
+
+# Jekyll configuration
+
+sass:
+  sass_dir: _sass
+  style: compressed
+permalink: /:categories/:title/
+kramdown:
+  toc_levels: 1..2
 highlighter: rouge
-paginate: 5
-language: 'en-uk'
-
-# Website info
-name: 'Finding The Way Home'
-description: "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
-
-short_url: 'jekyller.github.io/jasper/'
-google_analytics: UA-69281367-1
-disqus: username
-# edit baseurl to simply '/' if using as your personal page (instead of a project page)
-baseurl: /jasper/
-
-# Permalinks
-permalink: /:title
-# permalink: /author/:username
-# permalink: /tag/:tag
-
-# gems and other configs
-plugins: [jekyll-paginate]
-
-# Additional settings available on the front-matter
-# Site logo in the index.html (as in demo.ghost.io)
-# Author's page cover in _layouts/author.html
-# The same for page.html and tag.html layouts
-# Post's page cover as a per-post basis _posts/...
-# Disqus comments as a per-post basis
-# ...
+gems:
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
 
 
-# Settings for builing master branch with travis-ci
-# with jekyll-travis
+# Site owner
+owner:
+  name:
+  email:
+  twitter:
+  google:
+    ad-client:
+    ad-slot:
+  bio:
+  avatar: bio-photo.jpg # 160x160 px image for author byline
+  disqus-shortname:
 
-# Settings for deploy rake task
-# Username and repo of Github repo, e.g.
-# https://github.com/USERNAME/REPO.git
-# username defaults to ENV['GIT_NAME'] used by Travis
-# repo defaults to USERNAME.github.io
-# Branch defaults to "source" for USERNAME.github.io
-# or "master" otherwise
-safe: false
-lsi: false
-username: jekyller
-repo: jasper
-branch: master
-relative_source: ../jasper/
-destination: ../jasper-pages/
-production_url:  https://jekyller.github.io/jasper/
-source_url:  https://github.com/jekyller/jasper/
 
+include:
+  - .htaccess
 exclude:
-  - README.md
-  - Rakefile
+  - "*.less"
+  - "*.sublime-project"
+  - "*.sublime-workspace"
+  - .asset-cache
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - CHANGELOG
+  - Capfile
   - Gemfile
-  - Gemfile.lock
-  - changelog.md
-  - "*.Rmd"
-  - vendor
-  - .travis.yml
+  - Gruntfile.js
+  - LICENSE
+  - README
+  - Rakefile
+  - config
+  - gulpfile.js
+  - lib
+  - log
   - node_modules
-  - .git
+  - package.json
+  - spec
+  - tmp

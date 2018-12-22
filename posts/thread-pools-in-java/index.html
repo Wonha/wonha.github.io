@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thread Pools in Java &middot; Hello</title>
+
+    <meta name="description" content="">
+
+    <meta name="generator" content="Hugo 0.52" />
+    <meta name="twitter:card" content="summary">
+    
+    <meta name="twitter:title" content="Thread Pools in Java &middot; Hello">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Thread Pools in Java &middot; Hello">
+    <meta property="og:description" content="">
+
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Oxygen:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
+
+    <link rel="stylesheet" href='http://wonha.github.io/css/all.min.css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="alternate" type="application/rss+xml" title="Hello" href='http://wonha.github.io/index.xml' />
+</head>
+<body>
+
+
+<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+    <div class="header">
+        <hgroup>
+            <h1 class="brand-title"><a href="http://wonha.github.io">Hello</a></h1>
+            <h2 class="brand-tagline"> ?? </h2>
+        </hgroup>
+
+        <nav class="nav">
+            <ul class="nav-list">
+                
+                <li class="nav-item">
+                    <a class="pure-button" href="https://twitter.com/dragos_plesca">
+                        <i class="fa fa-twitter"></i> Twitter
+                    </a>
+                </li>
+                
+                
+                <li class="nav-item">
+                    <a class="pure-button" href="https://github.com/wonha">
+                        <i class="fa fa-github-alt"></i> Github
+                    </a>
+                </li>
+                
+                
+                <li class="nav-item">
+                    <a class="pure-button" href="https://stackoverflow.com/u/#######">
+                        <i class="fa fa-stack-overflow"></i>Stack Overflow
+                    </a>
+                </li>
+                
+                
+                <li class="nav-item">
+                    <a class="pure-button" href='http://wonha.github.io/index.xml'>
+                        <i class="fa fa-rss"></i> rss
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+        <div>
+            
+            <div class="posts">
+                <h1 class="content-subhead">22 Dec 2018, 21:38</h1>
+                <section class="post">
+                    <header class="post-header">
+
+                        <a href="http://wonha.github.io/posts/thread-pools-in-java/" class="post-title">Thread Pools in Java</a>
+
+                        <p class="post-meta">
+                            
+                            
+                        </p>
+                    </header>
+                    
+                    <div class="post-share">
+                        <div class="post-share-links">
+                            <h4 style="">Share</h4>
+                            
+                            
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="post-description">
+                        
+
+<h1 id="executor-framework">Executor Framework</h1>
+
+<h2 id="main-components">Main Components</h2>
+
+<ol>
+<li>ExecutorService
+<code>
+&gt; Executor
+    &gt; ExecutorService
+</code></li>
+<li>ThreadPoolExecutor
+<code>
+&gt; Executor
+    &gt; ExecutorService
+        &gt; AbstraceExecutorService
+            &gt; ThreadPoolExecutor
+                &gt; execute()
+                &gt; submit()
+                &gt; invokeAny()
+                &gt; invokeAll()
+                &gt; shutdown() -- soft shutdown
+                &gt; shutdownNow() -- a waiting ExecutorSErvice will cause the JVM to kee running
+</code></li>
+<li>ScheduledThreadPoolExecutor
+<code>
+&gt; Executor
+    &gt; ExecutorService
+        &gt; AbstraceExecutorService
+            &gt; ThreadPoolExecutor
+                &gt; ScheduledThreadPoolExecutor
+&gt; Executor
+    &gt; ExecutorService
+        &gt; ScheduledExecutorService
+            &gt; ScheduledThreadPoolExecutor
+</code></li>
+</ol>
+
+<h1 id="fork-join-pool-framework">Fork/Join Pool Framework</h1>
+
+<p>This framework first &lsquo;fork&rsquo; the given task, processing it, and then &lsquo;join&rsquo;.</p>
+
+<h2 id="main-components-1">Main Components</h2>
+
+<ol>
+<li>ForkJoinPool
+<code>
+&gt; Executor
+    &gt; ExecutorService
+        &gt; AbstraceExecutorService
+            &gt; ForkJoinPool
+</code></li>
+<li>ForkJoinWorkerThread
+<code>
+&gt; Thread
+    &gt; ForkJoinWorkerThread
+</code>
+Each of ForkJoinWorkerThread contains double-ended queue (deque), which stores forked tasks.<br />
+By using this deque and Work Stealing Algorithm, Fork/Join Pool framework allows one thread to work for multiple (especially recursive) tasks.<br /></li>
+</ol>
+
+<h1 id="spring">Spring</h1>
+
+<ol>
+<li>ThreadPoolTaskExecutor
+```
+&gt; Executor &ndash; java.util.concurrent
+&gt; TaskExecutor &ndash; org.springframework.core.task
+    &gt; AsyncTaskExecutor
+        &gt; SchedulingTaskExecutor
+            &gt; ThreadPoolTaskExecutor</li>
+</ol>
+
+<blockquote>
+<p>ThreadFactory &ndash; java.util.concurrent
+CustomizableThreadCreator &ndash; org.springframework.scheduling &hellip;
+    &gt; CustomizableThreadFactory
+        &gt; ExecutorConfigurationSupport
+            &gt; ThreadPoolTaskExecutor</p>
+
+<p>Executor &ndash; java.util.concurrent
+    &gt; TaskExecutor &ndash; org.springframework.core.task
+        &gt; AsyncTaskExecutor
+            &gt; AsyncListenableTaskExecutor
+                &gt; ThreadPoolTaskExecutor
+```</p>
+</blockquote>
+
+                    </div>
+                    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "xxxx" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                </section>
+            </div>
+            <div class="footer">
+    <div class="pure-menu pure-menu-horizontal pure-menu-open">
+        <ul>
+            <li>Powered by <a class="hugo" href="https://gohugo.io/" target="_blank">hugo</a></li>
+        </ul>
+    </div>
+</div>
+<script src='http://wonha.github.io/js/all.min.js'></script>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-xxxxxx-xx', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>

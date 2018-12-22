@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Hello World</title>
+    <title>Tags on Hello</title>
     <link>http://wonha.github.io/tags/</link>
-    <description>Recent content in Tags on Hello World</description>
+    <description>Recent content in Tags on Hello</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-EN</language>
-    <managingEditor>wonhashin26@gmail.com (Wonha Shin)</managingEditor>
-    <webMaster>wonhashin26@gmail.com (Wonha Shin)</webMaster>
-    <copyright>(c) 2018 wonha.</copyright>
+    <language>en-us</language>
     
 	<atom:link href="http://wonha.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     

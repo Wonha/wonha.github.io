@@ -3,34 +3,34 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://wonha.github.io/posts/thread-pools-in-java/</loc>
+    <loc>http://www.example.com/posts/thread-pools-in-java/</loc>
     <lastmod>2018-12-22T21:38:53+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wonha.github.io/posts/anatomy-of-completablefuture/</loc>
+    <loc>http://www.example.com/posts/anatomy-of-completablefuture/</loc>
     <lastmod>2018-12-22T20:42:24+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://wonha.github.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://wonha.github.io/</loc>
+    <loc>http://www.example.com/posts/</loc>
     <lastmod>2018-12-22T21:38:53+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://wonha.github.io/posts/</loc>
-    <lastmod>2018-12-22T21:38:53+09:00</lastmod>
+    <loc>http://www.example.com/tags/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://wonha.github.io/tags/</loc>
+    <loc>http://www.example.com/topics/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.example.com/</loc>
+    <lastmod>2018-12-22T21:38:53+09:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -10,14 +10,5 @@
 	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
     
     
-    <item>
-      <title></title>
-      <link>http://example.org/posts/2018-12-17-anatomy-of-completablefuture/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://example.org/posts/2018-12-17-anatomy-of-completablefuture/</guid>
-      <description>Asynchronous Computation with CompletableFuture Without utility methods public Future&amp;lt;String&amp;gt; boilerPlateFuture() throws InterruptedException { CompletableFuture&amp;lt;String&amp;gt; completableFuture = new CompletableFuture&amp;lt;&amp;gt;(); Executors.newCachedThreadPool().submit(() -&amp;gt; { Thread.sleep(500); completableFuture.complete(&amp;quot;Hello, I am &amp;quot; + Thread.currentThread().getName()); return null; }); return completableFuture; }  Supply, Apply and Accept Future&amp;lt;Void&amp;gt; future = CompletableFuture.supplyAsync(() -&amp;gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(&amp;quot;do supplyAsync&amp;quot;); return &amp;quot;Hello&amp;quot;; }).thenApply(s -&amp;gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.</description>
-    </item>
-    
   </channel>
 </rss>

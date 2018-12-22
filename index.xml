@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>sitename</title>
-    <link>http://www.example.com/</link>
-    <description>Recent content on sitename</description>
+    <title>Hello World</title>
+    <link>http://wonha.github.io/</link>
+    <description>Recent content on Hello World</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-EN</language>
-    <managingEditor>yourname@example.com (yourname)</managingEditor>
-    <webMaster>yourname@example.com (yourname)</webMaster>
-    <copyright>(c) 2015 yourname.</copyright>
+    <managingEditor>wonhashin26@gmail.com (Wonha Shin)</managingEditor>
+    <webMaster>wonhashin26@gmail.com (Wonha Shin)</webMaster>
+    <copyright>(c) 2018 wonha.</copyright>
     <lastBuildDate>Sat, 22 Dec 2018 20:42:24 +0900</lastBuildDate>
     
-	<atom:link href="http://www.example.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://wonha.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Anatomy of CompletableFuture</title>
-      <link>http://www.example.com/posts/anatomy-of-completablefuture/</link>
+      <link>http://wonha.github.io/posts/anatomy-of-completablefuture/</link>
       <pubDate>Sat, 22 Dec 2018 20:42:24 +0900</pubDate>
-      <author>yourname@example.com (yourname)</author>
-      <guid>http://www.example.com/posts/anatomy-of-completablefuture/</guid>
+      <author>wonhashin26@gmail.com (Wonha Shin)</author>
+      <guid>http://wonha.github.io/posts/anatomy-of-completablefuture/</guid>
       <description>Asynchronous Computation with CompletableFuture Without utility methods public Future&amp;lt;String&amp;gt; boilerPlateFuture() throws InterruptedException { CompletableFuture&amp;lt;String&amp;gt; completableFuture = new CompletableFuture&amp;lt;&amp;gt;(); Executors.newCachedThreadPool().submit(() -&amp;gt; { Thread.sleep(500); completableFuture.complete(&amp;quot;Hello, I am &amp;quot; + Thread.currentThread().getName()); return null; }); return completableFuture; }  Supply, Apply and Accept Future&amp;lt;Void&amp;gt; future = CompletableFuture.supplyAsync(() -&amp;gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(&amp;quot;do supplyAsync&amp;quot;); return &amp;quot;Hello&amp;quot;; }).thenApply(s -&amp;gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.</description>
     </item>
     

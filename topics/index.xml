@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Topics on sitename</title>
-    <link>http://www.example.com/topics/</link>
-    <description>Recent content in Topics on sitename</description>
+    <title>Topics on Hello World</title>
+    <link>http://wonha.github.io/topics/</link>
+    <description>Recent content in Topics on Hello World</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-EN</language>
-    <managingEditor>yourname@example.com (yourname)</managingEditor>
-    <webMaster>yourname@example.com (yourname)</webMaster>
-    <copyright>(c) 2015 yourname.</copyright>
+    <managingEditor>wonhashin26@gmail.com (Wonha Shin)</managingEditor>
+    <webMaster>wonhashin26@gmail.com (Wonha Shin)</webMaster>
+    <copyright>(c) 2018 wonha.</copyright>
     
-	<atom:link href="http://www.example.com/topics/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://wonha.github.io/topics/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

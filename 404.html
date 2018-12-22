@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>404 Page not found  &middot; Hello World</title>
+  <title>404 Page not found  &middot; sitename</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -17,10 +17,10 @@
 <meta name="keywords" content="">
 
 
-<meta property="og:title" content="404 Page not found  &middot; Hello World ">
-<meta property="og:site_name" content="Hello World"/>
+<meta property="og:title" content="404 Page not found  &middot; sitename ">
+<meta property="og:site_name" content="sitename"/>
 <meta property="og:url" content="" />
-<meta property="og:locale" content="en-us">
+<meta property="og:locale" content="en-EN">
 
 
 <meta property="og:type" content="website" />
@@ -29,8 +29,8 @@
 
 <link rel="canonical" href="" />
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://wonha.github.io/touch-icon-144-precomposed.png">
-<link href="http://wonha.github.io/favicon.png" rel="icon">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.example.com/touch-icon-144-precomposed.png">
+<link href="http://www.example.com/favicon.png" rel="icon">
 
 <meta name="generator" content="Hugo 0.52" />
 
@@ -42,18 +42,29 @@
 <link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/style.css">
-
+<link rel="stylesheet" href="/css/highlight/default.css">
 
   
   
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'Your Google Analytics tracking code', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+
 </head>
 <body>
-  <main id="main-wrapper" class="container main_wrapper">
+  <main id="main-wrapper" class="container main_wrapper has-sidebar">
     <header id="main-header" class="container main_header">
   <div class="container brand">
   <div class="container title h1-like">
-  <a class="baselink" href="http://wonha.github.io/">
-  Hello World
+  <a class="baselink" href="http://www.example.com">
+  foobar
 
 </a>
 
@@ -62,6 +73,8 @@
   
 <div class="container topline">
   
+  few words about your site
+
 
 </div>
 
@@ -71,6 +84,8 @@
   <nav class="container nav primary no-print">
   
 
+<a class="homelink" href="http://www.example.com">home</a>
+
 
   
 
@@ -78,7 +93,13 @@
 
 <div class="container nav secondary no-print">
   
+<a id="contact-link-email" class="contact_link" aria-label="Email" href="mailto:yourname@example.com">
+  <span class="fa fa-envelope-square"></span></a>
 
+
+
+<a id="contact-link-github" class="contact_link" aria-label="Github" href="https://github.com/enten/hugo-boilerplate">
+  <span class="fa fa-github-square"></span></a>
 
 
 
@@ -113,7 +134,7 @@
 <article id="main-content" class="container main_content error_404">
   <h1>404 Not found</h1>
   <p>What you&#39;re looking for isn&#39;t here, sorry!</p>
-  <p><a href="http://wonha.github.io/">&larr; Click here to go back home</a></p>
+  <p><a href="http://www.example.com">&larr; Click here to go back home</a></p>
 </article>
 
       <footer id="main-footer" class="container main_footer">
@@ -130,11 +151,20 @@
   
 <div class="container footline">
   
+  code with <i class='fa fa-heart'></i>
+
 
 </div>
 
 
   
+<div class="container copyright">
+  
+  &copy; 2015 yourname.
+
+
+</div>
+
 
 </div>
 
@@ -142,6 +172,23 @@
 
     </main>
     
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//your_disqus_shortname.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 
 
     

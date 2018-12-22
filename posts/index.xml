@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on sitename</title>
-    <link>http://www.example.com/posts/</link>
-    <description>Recent content in Posts on sitename</description>
+    <title>Posts on Hello World</title>
+    <link>http://wonha.github.io/posts/</link>
+    <description>Recent content in Posts on Hello World</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-EN</language>
-    <managingEditor>yourname@example.com (yourname)</managingEditor>
-    <webMaster>yourname@example.com (yourname)</webMaster>
-    <copyright>(c) 2015 yourname.</copyright>
+    <managingEditor>wonhashin26@gmail.com (Wonha Shin)</managingEditor>
+    <webMaster>wonhashin26@gmail.com (Wonha Shin)</webMaster>
+    <copyright>(c) 2019 Wonha Shin.</copyright>
     <lastBuildDate>Sat, 22 Dec 2018 21:38:53 +0900</lastBuildDate>
     
-	<atom:link href="http://www.example.com/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://wonha.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Thread Pools in Java</title>
-      <link>http://www.example.com/posts/thread-pools-in-java/</link>
+      <link>http://wonha.github.io/posts/thread-pools-in-java/</link>
       <pubDate>Sat, 22 Dec 2018 21:38:53 +0900</pubDate>
-      <author>yourname@example.com (yourname)</author>
-      <guid>http://www.example.com/posts/thread-pools-in-java/</guid>
+      <author>wonhashin26@gmail.com (Wonha Shin)</author>
+      <guid>http://wonha.github.io/posts/thread-pools-in-java/</guid>
       <description>Executor Framework Main Components  ExecutorService  &amp;gt; Executor &amp;gt; ExecutorService  ThreadPoolExecutor  &amp;gt; Executor &amp;gt; ExecutorService &amp;gt; AbstraceExecutorService &amp;gt; ThreadPoolExecutor &amp;gt; execute() &amp;gt; submit() &amp;gt; invokeAny() &amp;gt; invokeAll() &amp;gt; shutdown() -- soft shutdown &amp;gt; shutdownNow() -- a waiting ExecutorSErvice will cause the JVM to kee running  ScheduledThreadPoolExecutor  &amp;gt; Executor &amp;gt; ExecutorService &amp;gt; AbstraceExecutorService &amp;gt; ThreadPoolExecutor &amp;gt; ScheduledThreadPoolExecutor &amp;gt; Executor &amp;gt; ExecutorService &amp;gt; ScheduledExecutorService &amp;gt; ScheduledThreadPoolExecutor   Fork/Join Pool Framework This framework first &amp;lsquo;fork&amp;rsquo; the given task, processing it, and then &amp;lsquo;join&amp;rsquo;.</description>
     </item>
     
     <item>
       <title>Anatomy of CompletableFuture</title>
-      <link>http://www.example.com/posts/anatomy-of-completablefuture/</link>
+      <link>http://wonha.github.io/posts/anatomy-of-completablefuture/</link>
       <pubDate>Sat, 22 Dec 2018 20:42:24 +0900</pubDate>
-      <author>yourname@example.com (yourname)</author>
-      <guid>http://www.example.com/posts/anatomy-of-completablefuture/</guid>
+      <author>wonhashin26@gmail.com (Wonha Shin)</author>
+      <guid>http://wonha.github.io/posts/anatomy-of-completablefuture/</guid>
       <description>Asynchronous Computation with CompletableFuture Without utility methods public Future&amp;lt;String&amp;gt; boilerPlateFuture() throws InterruptedException { CompletableFuture&amp;lt;String&amp;gt; completableFuture = new CompletableFuture&amp;lt;&amp;gt;(); Executors.newCachedThreadPool().submit(() -&amp;gt; { Thread.sleep(500); completableFuture.complete(&amp;quot;Hello, I am &amp;quot; + Thread.currentThread().getName()); return null; }); return completableFuture; }  Supply, Apply and Accept Future&amp;lt;Void&amp;gt; future = CompletableFuture.supplyAsync(() -&amp;gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(&amp;quot;do supplyAsync&amp;quot;); return &amp;quot;Hello&amp;quot;; }).thenApply(s -&amp;gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.</description>
     </item>
     

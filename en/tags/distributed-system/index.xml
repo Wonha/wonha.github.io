@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Distributed System on Documentation for Hugo Learn Theme</title>
+    <link>https://wonha.github.io/en/tags/distributed-system/</link>
+    <description>Recent content in Distributed System on Documentation for Hugo Learn Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 22 Dec 2018 23:10:33 +0900</lastBuildDate>
+    
+	<atom:link href="https://wonha.github.io/en/tags/distributed-system/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ObjectID as a Shard Key</title>
+      <link>https://wonha.github.io/en/posts/objectid-as-a-shard-key/</link>
+      <pubDate>Sat, 22 Dec 2018 23:10:33 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/posts/objectid-as-a-shard-key/</guid>
+      <description>ObjectID as a Shard Key For Sharded Cluster with Ranged Sharding strategy, using ObjectID as a shard key will result in unbalanced load among cluster and will ended up using only one shard cluster during specific time range, and only some of the chunks will become the hotzone.
+Since all the documents created during this time range will be in the same chunk, until chunk split processor devide the chunk, and then finally chunk has moved to different cluster during balancing round.</description>
+    </item>
+    
+  </channel>
+</rss>

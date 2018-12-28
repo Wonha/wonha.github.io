@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clound Foundry on Documentation for Hugo Learn Theme</title>
+    <link>https://wonha.github.io/en/tags/clound-foundry/</link>
+    <description>Recent content in Clound Foundry on Documentation for Hugo Learn Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 22 Dec 2018 22:26:58 +0900</lastBuildDate>
+    
+	<atom:link href="https://wonha.github.io/en/tags/clound-foundry/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Clound Foundry Get Started</title>
+      <link>https://wonha.github.io/en/posts/cloud-foundry-get-started/</link>
+      <pubDate>Sat, 22 Dec 2018 22:26:58 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/posts/cloud-foundry-get-started/</guid>
+      <description>Basic Commands Create Organization &amp;amp; Space cf create-rpaas-org -demo wonha-demo-org 28 cf target -o wonha-demo-org cf create-space wonha-demo-dev cf target -s wonha-dev  Deploy Application echo &#39;&amp;lt;?php echo &amp;quot;Hello World!\n&amp;quot;; ?&amp;gt;&#39; &amp;gt; index.php cf push wonha-test-app -d dev.wonha.net cf apps curl -v wonha-test-app.dev.wonha.net cf set-space-isolation-segment wonha-dev dev cf push hello-world-app -d dev.wonha.net -i 2 -m 64M --random-route -k 256M cf apps curl -v hello-world-app.dev.wonha.net  Create and Bind Service cf marketplace cf services cf env cf env hello-world-app cf create-service proxy free hello-wonha-proxy cf cups SERVICE_INSTANCE -p &#39;{&amp;quot;name&amp;quot;:&amp;quot;admin&amp;quot;,&amp;quot;password&amp;quot;:&amp;quot;1234&amp;quot;}&#39; cf create-user-provided-service SERVICE_NAME -r https://route  Blue Green Deployment cf map-route --help cf map-route hello-world2 hello-wonha.</description>
+    </item>
+    
+  </channel>
+</rss>

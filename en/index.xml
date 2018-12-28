@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Documentation for Hugo Learn Theme</title>
+    <link>https://wonha.github.io/en/</link>
+    <description>Recent content on Documentation for Hugo Learn Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 28 Dec 2018 23:38:24 +0900</lastBuildDate>
+    
+	<atom:link href="https://wonha.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Perl5</title>
+      <link>https://wonha.github.io/en/posts/perl5/</link>
+      <pubDate>Fri, 28 Dec 2018 23:38:24 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/posts/perl5/</guid>
+      <description>tags: Perl 5
+It&amp;rsquo;s been a while since I could enjoy daily programming life with Perl 5.
+I tried to find a chance to make any program with Perl, but it&amp;rsquo;s not easy especially when co-workers does not looks very happy reading the Perl code.
+There are many languages showing off their fancy features and paradigm, like Kotlin and Haskell or even new projects on going with OpenJDK, however I believe perl is still a very powerful tool for any kind of utilization.</description>
+    </item>
+    
+    <item>
+      <title>Bulk Update New Fields</title>
+      <link>https://wonha.github.io/en/posts/bulk-update-new-fields/</link>
+      <pubDate>Sat, 22 Dec 2018 23:10:58 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/posts/bulk-update-new-fields/</guid>
+      <description>Bulk Update New Fields Update Operation var requests = []; db.deal.find({}).forEach(document =&amp;gt; { for (var i = 0; i &amp;lt; document.buddies.length; i++) { var newField = &#39;buddies.&#39;+idxs[i]+&#39;.name&#39;; var write = { &#39;updateOne&#39;: { &#39;filter&#39;: { &amp;quot;_id&amp;quot;: document._id }, &#39;update&#39;: { &#39;$set&#39; : {} } } } write[&#39;updateOne&#39;][&#39;update&#39;][&#39;$set&#39;][newField] = document.firstname + document.lastname; requests.push(write); } if (requests.length === 40000) { db.deal.bulkWrite(requests); requests = []; } }); if (requests.length &amp;gt; 0) { db.</description>
+    </item>
+    
+    <item>
+      <title>ObjectID as a Shard Key</title>
+      <link>https://wonha.github.io/en/posts/objectid-as-a-shard-key/</link>
+      <pubDate>Sat, 22 Dec 2018 23:10:33 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/posts/objectid-as-a-shard-key/</guid>
+      <description>ObjectID as a Shard Key For Sharded Cluster with Ranged Sharding strategy, using ObjectID as a shard key will result in unbalanced load among cluster and will ended up using only one shard cluster during specific time range, and only some of the chunks will become the hotzone.
+Since all the documents created during this time range will be in the same chunk, until chunk split processor devide the chunk, and then finally chunk has moved to different cluster during balancing round.</description>
+    </item>
+    
+    <item>
+      <title>Clound Foundry Get Started</title>
+      <link>https://wonha.github.io/en/posts/cloud-foundry-get-started/</link>
+      <pubDate>Sat, 22 Dec 2018 22:26:58 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/posts/cloud-foundry-get-started/</guid>
+      <description>Basic Commands Create Organization &amp;amp; Space cf create-rpaas-org -demo wonha-demo-org 28 cf target -o wonha-demo-org cf create-space wonha-demo-dev cf target -s wonha-dev  Deploy Application echo &#39;&amp;lt;?php echo &amp;quot;Hello World!\n&amp;quot;; ?&amp;gt;&#39; &amp;gt; index.php cf push wonha-test-app -d dev.wonha.net cf apps curl -v wonha-test-app.dev.wonha.net cf set-space-isolation-segment wonha-dev dev cf push hello-world-app -d dev.wonha.net -i 2 -m 64M --random-route -k 256M cf apps curl -v hello-world-app.dev.wonha.net  Create and Bind Service cf marketplace cf services cf env cf env hello-world-app cf create-service proxy free hello-wonha-proxy cf cups SERVICE_INSTANCE -p &#39;{&amp;quot;name&amp;quot;:&amp;quot;admin&amp;quot;,&amp;quot;password&amp;quot;:&amp;quot;1234&amp;quot;}&#39; cf create-user-provided-service SERVICE_NAME -r https://route  Blue Green Deployment cf map-route --help cf map-route hello-world2 hello-wonha.</description>
+    </item>
+    
+    <item>
+      <title>Thread Pools in Java</title>
+      <link>https://wonha.github.io/en/posts/thread-pools-in-java/</link>
+      <pubDate>Sat, 22 Dec 2018 21:38:53 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/posts/thread-pools-in-java/</guid>
+      <description>Executor Framework Main Components  ExecutorService  &amp;gt; Executor &amp;gt; ExecutorService  ThreadPoolExecutor  &amp;gt; Executor &amp;gt; ExecutorService &amp;gt; AbstraceExecutorService &amp;gt; ThreadPoolExecutor &amp;gt; execute() &amp;gt; submit() &amp;gt; invokeAny() &amp;gt; invokeAll() &amp;gt; shutdown() -- soft shutdown &amp;gt; shutdownNow() -- a waiting ExecutorSErvice will cause the JVM to kee running  ScheduledThreadPoolExecutor  &amp;gt; Executor &amp;gt; ExecutorService &amp;gt; AbstraceExecutorService &amp;gt; ThreadPoolExecutor &amp;gt; ScheduledThreadPoolExecutor &amp;gt; Executor &amp;gt; ExecutorService &amp;gt; ScheduledExecutorService &amp;gt; ScheduledThreadPoolExecutor   Fork/Join Pool Framework This framework first &amp;lsquo;fork&amp;rsquo; the given task, processing it, and then &amp;lsquo;join&amp;rsquo;.</description>
+    </item>
+    
+    <item>
+      <title>Anatomy of CompletableFuture</title>
+      <link>https://wonha.github.io/en/posts/anatomy-of-completablefuture/</link>
+      <pubDate>Sat, 22 Dec 2018 20:42:24 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/posts/anatomy-of-completablefuture/</guid>
+      <description>Asynchronous Computation with CompletableFuture Without utility methods public Future&amp;lt;String&amp;gt; boilerPlateFuture() throws InterruptedException { CompletableFuture&amp;lt;String&amp;gt; completableFuture = new CompletableFuture&amp;lt;&amp;gt;(); Executors.newCachedThreadPool().submit(() -&amp;gt; { Thread.sleep(500); completableFuture.complete(&amp;quot;Hello, I am &amp;quot; + Thread.currentThread().getName()); return null; }); return completableFuture; }  Supply, Apply and Accept Future&amp;lt;Void&amp;gt; future = CompletableFuture.supplyAsync(() -&amp;gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(&amp;quot;do supplyAsync&amp;quot;); return &amp;quot;Hello&amp;quot;; }).thenApply(s -&amp;gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.</description>
+    </item>
+    
+  </channel>
+</rss>

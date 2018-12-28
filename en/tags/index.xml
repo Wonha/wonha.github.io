@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Documentation for Hugo Learn Theme</title>
+    <link>https://wonha.github.io/en/tags/</link>
+    <description>Recent content in Tags on Documentation for Hugo Learn Theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 22 Dec 2018 20:42:24 +0900</lastBuildDate>
+    
+	<atom:link href="https://wonha.github.io/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Async</title>
+      <link>https://wonha.github.io/en/tags/async/</link>
+      <pubDate>Sat, 22 Dec 2018 20:42:24 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/tags/async/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Clound Foundry</title>
+      <link>https://wonha.github.io/en/tags/clound-foundry/</link>
+      <pubDate>Sat, 22 Dec 2018 22:26:58 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/tags/clound-foundry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Completablefuture</title>
+      <link>https://wonha.github.io/en/tags/completablefuture/</link>
+      <pubDate>Sat, 22 Dec 2018 20:42:24 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/tags/completablefuture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Distributed System</title>
+      <link>https://wonha.github.io/en/tags/distributed-system/</link>
+      <pubDate>Sat, 22 Dec 2018 23:10:33 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/tags/distributed-system/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>https://wonha.github.io/en/tags/java/</link>
+      <pubDate>Sat, 22 Dec 2018 21:38:53 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mongodb</title>
+      <link>https://wonha.github.io/en/tags/mongodb/</link>
+      <pubDate>Sat, 22 Dec 2018 23:10:58 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/tags/mongodb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Multithreading</title>
+      <link>https://wonha.github.io/en/tags/multithreading/</link>
+      <pubDate>Sat, 22 Dec 2018 21:38:53 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/tags/multithreading/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Paas</title>
+      <link>https://wonha.github.io/en/tags/paas/</link>
+      <pubDate>Sat, 22 Dec 2018 22:26:58 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/tags/paas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Perl 5</title>
+      <link>https://wonha.github.io/en/tags/perl-5/</link>
+      <pubDate>Fri, 28 Dec 2018 23:38:24 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/tags/perl-5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sharded Cluster</title>
+      <link>https://wonha.github.io/en/tags/sharded-cluster/</link>
+      <pubDate>Sat, 22 Dec 2018 23:10:33 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/tags/sharded-cluster/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Thread Pool</title>
+      <link>https://wonha.github.io/en/tags/thread-pool/</link>
+      <pubDate>Sat, 22 Dec 2018 21:38:53 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/tags/thread-pool/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

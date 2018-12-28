@@ -1,0 +1,148 @@
+[
+{
+	"uri": "https://wonha.github.io/en/posts/perl5/",
+	"title": "Perl5",
+	"tags": ["Perl 5"],
+	"description": "",
+	"content": " tags: Perl 5\nIt\u0026rsquo;s been a while since I could enjoy daily programming life with Perl 5.\nI tried to find a chance to make any program with Perl, but it\u0026rsquo;s not easy especially when co-workers does not looks very happy reading the Perl code.\nThere are many languages showing off their fancy features and paradigm, like Kotlin and Haskell or even new projects on going with OpenJDK, however I believe perl is still a very powerful tool for any kind of utilization.\nThe purpose of posts regarding the perl is mostly like a memo to myself.\nperldoc  Extension of perldoc(POD: Plain Old Documentation) is often .pod or .pm(perl module) .pm extension is used if .pm file has embedded POD and the .pod is not found.\n Source code of the module is also visible from perldoc bash perldoc -m MeCab perldoc -m Try::Tiny   Documents structure perl perlfaq perltoc perldiag perldoc CGI\nuseful switchs -D : Describes search for the item in detail -q : perldoc -q \u0026quot;something I'm looking for\u0026quot; perlfaq-search-regexp -l : perldoc -l Time::HiRes Display only the file name of the module found Type \u0026gt; perldoc perldoc for details\nshebang lines The third line of below code block is to tell perl to use env program to find out which perl is set as the default perl on the system.\n#!/usr/bin/perl #!/usr/local/bin/perl #!/usr/bin/env perl  Module  The perl finds module by looking through the dirctories in the @INC, which contains module search path bash $ perl -V $ perl -le \u0026quot;print for @INC\u0026quot; perldoc -l Time::HiRes # see location perl -MTime::HiRes -e 'print $INC{\u0026quot;Time/HiRes.pm\u0026quot;}.\\n'   Module Path Set path in program Following code doesn\u0026rsquo;t work becuase unshift is executed at runtime and the use pragma evaluated at compile time.\nunshift @INC, '/Users/wonha/lib'; use Navigation::SeatOfPandts;  Correct way is to use BEGIN block :\nBEGIN {unshift @INC, '/Users/gilligan/lib'; } use Navigation::SeatOfPandts;  Context  It is comma operator impliciting the list context, not paranthese.\n But in order to make empty list or one-element list, use paranthese, not comma perl ($dino) = something; @arr = ( );   Scoping  my keyword declares lexical variable, which is same as private varibale of that scope\n state is similar to final keyword in Java perl use feature 'state'   Special Variables \u0026gt; perldoc perlvar     VARIABLE DESCRIPTION     @_ a   @INC Contains paths to look for files loaded with do, require, or use.   %INC Contains entries for every file loaded with do, require, or use.   $^V The current Perl version   $^X The executable used to execute your program   $@ Perl syntax error trapped by eval.   $/ input record separator (defaultly, newline)   $ output record separator   $\u0026rdquo; list separator ( print \u0026ldquo;@array\\n\u0026rdquo;;)   $! contain system call failure reason   $l set this to 1 will set the currently selected filehande(by select operator) buffer flushed after each output operation   %ENV .   $$ current process ID    String  \u0026rdquo; \u0026ldquo;, , , qq{}: escape and interpolate have full power.\n \u0026rsquo; \u0026lsquo;, qw//, q{}: escape single quote(or used delimiter) and backslach.\nperl my $letter = \u0026lt;\u0026lt;\u0026quot;SQL\u0026quot;; SELECT c.id FROM customers c JOIN orders o On c.id = customer_id SQL   Unicode Basic control flow with Hash \u0026amp; Array my %french_for = qw/1 un 2 deux 3 trois/; ### my %perl = map { $_, 1 } @required; for my $item (@required) { if ( $perl{$item} ) { print \u0026quot;perl have the item\\n\u0026quot;; } } ### @arry = %people = ( %classmate, austen =\u0026gt; 'Jane', Lincoln =\u0026gt; \u0026quot;Abraham\u0026quot; ); ### my(undef, undef, undef, undef, $mtime, $ctime) = stat $some_file # this is annoying my ($ctime1, $mtime, $ctime2) = (stat $some_file)[5,4,5]; # use a list slice ### while ( ( $index, $value ) = each @rocks ) { print \u0026quot;$index: $value\\n\u0026quot;; } ### my @fields = split /:/, \u0026quot;:::a:b:c:::\u0026quot;; # gives (\u0026quot;\u0026quot;, \u0026quot;\u0026quot;, \u0026quot;\u0026quot;, \u0026quot;a\u0026quot;, \u0026quot;b\u0026quot;, \u0026quot;c\u0026quot;)  Caching recursion : Memoiz  tail call recursion : goto caching previous result during recursive call : memoize module ```perl use Memoize; memoize(\u0026lsquo;F\u0026rsquo;);  sub F { my $n = shift; return 0 if $n == 0; return 1 if $n == 1; return F($n-1) + F($n-2); } print F(7); ```\n"
+},
+{
+	"uri": "https://wonha.github.io/en/posts/bulk-update-new-fields/",
+	"title": "Bulk Update New Fields",
+	"tags": ["MongoDB"],
+	"description": "",
+	"content": " Bulk Update New Fields Update Operation var requests = []; db.deal.find({}).forEach(document =\u0026gt; { for (var i = 0; i \u0026lt; document.buddies.length; i++) { var newField = 'buddies.'+idxs[i]+'.name'; var write = { 'updateOne': { 'filter': { \u0026quot;_id\u0026quot;: document._id }, 'update': { '$set' : {} } } } write['updateOne']['update']['$set'][newField] = document.firstname + document.lastname; requests.push(write); } if (requests.length === 40000) { db.deal.bulkWrite(requests); requests = []; } }); if (requests.length \u0026gt; 0) { db.deal.bulkWrite(requests); }  Verify db.rundCommand({getLastError : 1})  "
+},
+{
+	"uri": "https://wonha.github.io/en/posts/objectid-as-a-shard-key/",
+	"title": "ObjectID as a Shard Key",
+	"tags": ["MongoDB", "Sharded Cluster", "Distributed System"],
+	"description": "",
+	"content": " ObjectID as a Shard Key For Sharded Cluster with Ranged Sharding strategy, using ObjectID as a shard key will result in unbalanced load among cluster and will ended up using only one shard cluster during specific time range, and only some of the chunks will become the hotzone.\nSince all the documents created during this time range will be in the same chunk, until chunk split processor devide the chunk, and then finally chunk has moved to different cluster during balancing round.\nMongoDB server will judge if chunk should be splited after every write operation on that chunk, however balacing chunk requires high load on \u0026lsquo;from\u0026rsquo; and \u0026lsquo;to\u0026rsquo; shard server (INSERT, REMOVE, re-building index, etc), and even the config database will be locked for chunk migration.\nOnly solution to handle this is to use hashed sharding instead of ranged sharding\nChunk Migration Log Chunk migration logs are in in changelog collection.\nuse config db.changelog.find().sort({$natural:-1}).pretty()  Chunk Status sh.status() db.collection.getShardDistribution()  Checking the Chunk Size The mongo shell does not expose simple command to check the chunk size.\nvar ns = \u0026quot;database.collection\u0026quot; var key = {_id: 1} db.getSiblingDB(\u0026quot;config\u0026quot;).chunks.find({ ns: ns }).forEach( function (chunk) { var ds = db.getSiblingDB(ns.split(\u0026quot;.\u0026quot;)[0]).runCommand( { datasize: chunk.ns, keyPattern: key, min: chunk.min, max: chunk.max, from : chunk }); // printjson(ds); print(\u0026quot;Chunk: \u0026quot; + chunk._id + \u0026quot; has a size of \u0026quot; + ds.size + \u0026quot;, and includes \u0026quot; + ds.numObjects + \u0026quot; objects (took \u0026quot; + ds.millis + \u0026quot;ms)\u0026quot;) } )  "
+},
+{
+	"uri": "https://wonha.github.io/en/posts/cloud-foundry-get-started/",
+	"title": "Clound Foundry Get Started",
+	"tags": ["PaaS", "Clound Foundry"],
+	"description": "",
+	"content": " Basic Commands Create Organization \u0026amp; Space cf create-rpaas-org -demo wonha-demo-org 28 cf target -o wonha-demo-org cf create-space wonha-demo-dev cf target -s wonha-dev  Deploy Application echo '\u0026lt;?php echo \u0026quot;Hello World!\\n\u0026quot;; ?\u0026gt;' \u0026gt; index.php cf push wonha-test-app -d dev.wonha.net cf apps curl -v wonha-test-app.dev.wonha.net cf set-space-isolation-segment wonha-dev dev cf push hello-world-app -d dev.wonha.net -i 2 -m 64M --random-route -k 256M cf apps curl -v hello-world-app.dev.wonha.net  Create and Bind Service cf marketplace cf services cf env cf env hello-world-app cf create-service proxy free hello-wonha-proxy cf cups SERVICE_INSTANCE -p '{\u0026quot;name\u0026quot;:\u0026quot;admin\u0026quot;,\u0026quot;password\u0026quot;:\u0026quot;1234\u0026quot;}' cf create-user-provided-service SERVICE_NAME -r https://route  Blue Green Deployment cf map-route --help cf map-route hello-world2 hello-wonha.dev.wonha.net -n hello-world  Deploy Docker Container cf push my-docer-app -d dev.wonha.net --docker-image httpd  "
+},
+{
+	"uri": "https://wonha.github.io/en/posts/thread-pools-in-java/",
+	"title": "Thread Pools in Java",
+	"tags": ["Java", "Multithreading", "Thread Pool"],
+	"description": "",
+	"content": " Executor Framework Main Components  ExecutorService  \u0026gt; Executor \u0026gt; ExecutorService  ThreadPoolExecutor  \u0026gt; Executor \u0026gt; ExecutorService \u0026gt; AbstraceExecutorService \u0026gt; ThreadPoolExecutor \u0026gt; execute() \u0026gt; submit() \u0026gt; invokeAny() \u0026gt; invokeAll() \u0026gt; shutdown() -- soft shutdown \u0026gt; shutdownNow() -- a waiting ExecutorSErvice will cause the JVM to kee running  ScheduledThreadPoolExecutor  \u0026gt; Executor \u0026gt; ExecutorService \u0026gt; AbstraceExecutorService \u0026gt; ThreadPoolExecutor \u0026gt; ScheduledThreadPoolExecutor \u0026gt; Executor \u0026gt; ExecutorService \u0026gt; ScheduledExecutorService \u0026gt; ScheduledThreadPoolExecutor   Fork/Join Pool Framework This framework first \u0026lsquo;fork\u0026rsquo; the given task, processing it, and then \u0026lsquo;join\u0026rsquo;.\nMain Components  ForkJoinPool  \u0026gt; Executor \u0026gt; ExecutorService \u0026gt; AbstraceExecutorService \u0026gt; ForkJoinPool  ForkJoinWorkerThread  \u0026gt; Thread \u0026gt; ForkJoinWorkerThread  Each of ForkJoinWorkerThread contains double-ended queue (deque), which stores forked tasks.\nBy using this deque and Work Stealing Algorithm, Fork/Join Pool framework allows one thread to work for multiple (especially recursive) tasks.\n  Spring  ThreadPoolTaskExecutor\n\u0026gt; Executor -- java.util.concurrent \u0026gt; TaskExecutor -- org.springframework.core.task \u0026gt; AsyncTaskExecutor \u0026gt; SchedulingTaskExecutor \u0026gt; ThreadPoolTaskExecutor \u0026gt; ThreadFactory -- java.util.concurrent \u0026gt; CustomizableThreadCreator -- org.springframework.scheduling ... \u0026gt; CustomizableThreadFactory \u0026gt; ExecutorConfigurationSupport \u0026gt; ThreadPoolTaskExecutor \u0026gt; Executor -- java.util.concurrent \u0026gt; TaskExecutor -- org.springframework.core.task \u0026gt; AsyncTaskExecutor \u0026gt; AsyncListenableTaskExecutor \u0026gt; ThreadPoolTaskExecutor   "
+},
+{
+	"uri": "https://wonha.github.io/en/posts/anatomy-of-completablefuture/",
+	"title": "Anatomy of CompletableFuture",
+	"tags": ["Java", "Async", "Multithreading", "CompletableFuture"],
+	"description": "",
+	"content": " Asynchronous Computation with CompletableFuture Without utility methods public Future\u0026lt;String\u0026gt; boilerPlateFuture() throws InterruptedException { CompletableFuture\u0026lt;String\u0026gt; completableFuture = new CompletableFuture\u0026lt;\u0026gt;(); Executors.newCachedThreadPool().submit(() -\u0026gt; { Thread.sleep(500); completableFuture.complete(\u0026quot;Hello, I am \u0026quot; + Thread.currentThread().getName()); return null; }); return completableFuture; }  Supply, Apply and Accept Future\u0026lt;Void\u0026gt; future = CompletableFuture.supplyAsync(() -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do supplyAsync\u0026quot;); return \u0026quot;Hello\u0026quot;; }).thenApply(s -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do thenApply\u0026quot;); return s + \u0026quot; World\u0026quot;; }).thenAccept(s -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do thenAccept\u0026quot;); log.info(\u0026quot;future result : {}\u0026quot;, s); }); log.info(\u0026quot;do main\u0026quot;);  10:33:41.1 [main] - do main 10:33:42.1 [ForkJoinPool.commonPool-worker-1] - do supplyAsync 10:33:43.1 [ForkJoinPool.commonPool-worker-1] - do thenApply 10:33:44.1 [ForkJoinPool.commonPool-worker-1] - do thenAccept 10:33:44.1 [ForkJoinPool.commonPool-worker-1] - future result : Hello World  Weaving Futures Supply and Compose Future\u0026lt;Void\u0026gt; future = CompletableFuture.supplyAsync(() -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do supplyAsync\u0026quot;); return \u0026quot;Hello\u0026quot;; }).thenCompose(s -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do thenCompose\u0026quot;); return CompletableFuture.supplyAsync(() -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do supplyAsync\u0026quot;); return s + \u0026quot; World\u0026quot;; }).thenAccept(t -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do thenAccept-chained\u0026quot;); }); }).thenAccept(s -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do thenAccept\u0026quot;); log.info(\u0026quot;future result : {}\u0026quot;, s); }); log.info(\u0026quot;do main\u0026quot;);   10:55:06.6 [main] - do main 10:55:07.6 [ForkJoinPool.commonPool-worker-1] - do supplyAsync 10:55:08.6 [ForkJoinPool.commonPool-worker-1] - do thenCompose 10:55:09.6 [ForkJoinPool.commonPool-worker-2] - do supplyAsync 10:55:10.6 [ForkJoinPool.commonPool-worker-2] - do thenAccept-chained 10:55:11.6 [ForkJoinPool.commonPool-worker-2] - do thenAccept 10:55:11.6 [ForkJoinPool.commonPool-worker-2] - future result : null  The difference between thenApply() and thenCompose() :\n- thenApply : Nested future (map) - thenCompose : Chaining independent future (flatMap)\nthenCompose() is useful when assembling modularized code :\nCompletableFuture\u0026lt;Integer\u0026gt; future1 = CompletableFuture.supplyAsync(() -\u0026gt; 1); CompletableFuture\u0026lt;Double\u0026gt; future2 = CompletableFuture.supplyAsync(() -\u0026gt; 1.0); CompletableFuture\u0026lt;CompletableFuture\u0026lt;Double\u0026gt;\u0026gt; nested = future1.thenApply(i -\u0026gt; future2); CompletableFuture\u0026lt;Double\u0026gt; chained = future1.thenCompose(i -\u0026gt; future2);  Future of thenCompose is executed in sequential as we can check from the result above that the same worker thread has been used (it\u0026rsquo;s just chaining).\nFuture of thenCombine works in parallel.\nSupply and Combine Future\u0026lt;Void\u0026gt; future = CompletableFuture.supplyAsync(() -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do supplyAsync\u0026quot;); return \u0026quot;Hello\u0026quot;; }).thenCombine( CompletableFuture.supplyAsync(() -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do supplyAsync\u0026quot;); return \u0026quot; World\u0026quot;; }), (s1, s2) -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do combining\u0026quot;); return s1 + s2; } ).thenAccept(s -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do thenAccept\u0026quot;); log.info(\u0026quot;future result : {}\u0026quot;, s); }); log.info(\u0026quot;do main\u0026quot;);   10:51:32.5 [main] - do main 10:51:33.5 [ForkJoinPool.commonPool-worker-1] - do supplyAsync 10:51:33.5 [ForkJoinPool.commonPool-worker-2] - do supplyAsync 10:51:34.5 [ForkJoinPool.commonPool-worker-2] - do combining 10:51:35.5 [ForkJoinPool.commonPool-worker-2] - do thenAccept 10:51:35.5 [ForkJoinPool.commonPool-worker-2] - future result : Hello World  Accept Both thenAcceptBoth() is similar to thenCombine().thenAccept()\nFuture\u0026lt;Void\u0026gt; future = CompletableFuture.supplyAsync(() -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do supplyAsync\u0026quot;); return \u0026quot;Hello\u0026quot;; }).thenAcceptBoth( CompletableFuture.supplyAsync(() -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do supplyAsync\u0026quot;); return \u0026quot; World\u0026quot;; }), (s1, s2) -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do accepting\u0026quot;); log.info(\u0026quot;future result : {}\u0026quot;, s1 + s2); } ); log.info(\u0026quot;do main\u0026quot;);   11:01:16.8 [main] - do main 11:01:17.8 [ForkJoinPool.commonPool-worker-2] - do supplyAsync 11:01:17.8 [ForkJoinPool.commonPool-worker-1] - do supplyAsync 11:01:18.8 [ForkJoinPool.commonPool-worker-2] - do accepting 11:01:18.8 [ForkJoinPool.commonPool-worker-2] - future result : Hello World  Multiple Futures CompletableFuture\u0026lt;Integer\u0026gt; future1 = CompletableFuture.supplyAsync(() -\u0026gt; { log.info(\u0026quot;future1\u0026quot;); return 1; }); CompletableFuture\u0026lt;Integer\u0026gt; future2 = CompletableFuture.supplyAsync(() -\u0026gt; { log.info(\u0026quot;future2\u0026quot;); return 2; }); CompletableFuture\u0026lt;Integer\u0026gt; future3 = CompletableFuture.supplyAsync(() -\u0026gt; { log.info(\u0026quot;future3\u0026quot;); return 3; }); List\u0026lt;CompletableFuture\u0026gt; listOfFuture = new ArrayList\u0026lt;\u0026gt;(); listOfFuture.add(future1); listOfFuture.add(future2); listOfFuture.add(future3); CompletableFuture.allOf(listOfFuture.toArray(new CompletableFuture[listOfFuture.size()])) .thenAccept(s -\u0026gt; { log.info(\u0026quot;allOf\u0026quot;); listOfFuture.stream() .map(CompletableFuture::join) .forEach(r -\u0026gt; log.info(\u0026quot;result : {}\u0026quot;, r)); }).join();   12:45:08.7 [ForkJoinPool.commonPool-worker-1] - future1 12:45:08.7 [ForkJoinPool.commonPool-worker-3] - future3 12:45:08.7 [ForkJoinPool.commonPool-worker-2] - future2 12:45:08.7 [ForkJoinPool.commonPool-worker-2] - allOf 12:45:08.7 [ForkJoinPool.commonPool-worker-2] - result : 1 12:45:08.7 [ForkJoinPool.commonPool-worker-2] - result : 2 12:45:08.7 [ForkJoinPool.commonPool-worker-2] - result : 3   get() throws checked exception when future completed exceptionally, however join() throws unchecked exception.\nDue to this, join() is good to use with stream.\nString combined = Stream.of(future1, future2, future3) .map(CompletableFuture::join) .collect(Collectors.joining(\u0026quot; \u0026quot;));   Exception Handling handle handler() is thenApply() + exception handler.\nString name = null; Future\u0026lt;Void\u0026gt; future = CompletableFuture.supplyAsync(() -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do supplyAsync\u0026quot;); if (name == null) throw new RuntimeException(\u0026quot;Computation error!\u0026quot;); return \u0026quot;Hello, \u0026quot; + name; }).handle((s, ex) -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do handle\u0026quot;); return ex != null ? \u0026quot;Hello, Unknown!\u0026quot; : s; }).thenAccept(s -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do accept\u0026quot;); log.info(\u0026quot;future result : {}\u0026quot;, s); }); log.info(\u0026quot;do main\u0026quot;);  exceptionally exceptionally() provides fallback value when the Future has completed exceptionally.\nFuture\u0026lt;Integer\u0026gt; future = CompletableFuture.supplyAsync(() -\u0026gt; { int val = 1; log.info(\u0026quot;do supplyAsync\u0026quot;); return val; }).thenApply(s -\u0026gt; { log.info(\u0026quot;do thenApply 1\u0026quot;); if (1 == 1) throw new RuntimeException(); return s + 1; }).thenApply(s -\u0026gt; { log.info(\u0026quot;do thenApply 2\u0026quot;); return s + 1; }).exceptionally(ex -\u0026gt; 100); log.info(\u0026quot;result : {}\u0026quot;, future.get());   12:28:07.8 [ForkJoinPool.commonPool-worker-1] - do supplyAsync 12:28:07.8 [ForkJoinPool.commonPool-worker-1] - do thenApply 1 12:28:07.8 [main] - result : 100  Future\u0026lt;Integer\u0026gt; future = CompletableFuture.supplyAsync(() -\u0026gt; { int val = 1; log.info(\u0026quot;do supplyAsync\u0026quot;); return val; }).thenApply(s -\u0026gt; { log.info(\u0026quot;do thenApply 1\u0026quot;); return s + 1; }).thenApply(s -\u0026gt; { log.info(\u0026quot;do thenApply 2\u0026quot;); if (1 == 1) throw new RuntimeException(); return s + 1; }).exceptionally(ex -\u0026gt; 100); log.info(\u0026quot;result : {}\u0026quot;, future.get());   12:29:00.5 [ForkJoinPool.commonPool-worker-1] - do supplyAsync 12:29:00.5 [ForkJoinPool.commonPool-worker-1] - do thenApply 1 12:29:00.5 [ForkJoinPool.commonPool-worker-1] - do thenApply 2 12:29:00.5 [main] - result : 100  However it does not handle exception fot those which occured after the chaining.\nFuture\u0026lt;Integer\u0026gt; future = CompletableFuture.supplyAsync(() -\u0026gt; { int val = 1; log.info(\u0026quot;do supplyAsync\u0026quot;); return val; }).thenApply(s -\u0026gt; { log.info(\u0026quot;do thenApply 1\u0026quot;); return s + 1; }).exceptionally(ex -\u0026gt; 100) .thenApply(s -\u0026gt; { log.info(\u0026quot;do thenApply 2\u0026quot;); if (1 == 1) throw new RuntimeException(); return s + 1; }); log.info(\u0026quot;result : {}\u0026quot;, future.get());   12:30:01.183 [ForkJoinPool.commonPool-worker-1] INFO rakuten.travel.reservation.steps.StepsApplication - do supplyAsync 12:30:01.187 [ForkJoinPool.commonPool-worker-1] INFO rakuten.travel.reservation.steps.StepsApplication - do thenApply 1 12:30:01.187 [ForkJoinPool.commonPool-worker-1] INFO rakuten.travel.reservation.steps.StepsApplication - do thenApply 2 Exception in thread \u0026quot;main\u0026quot; java.util.concurrent.ExecutionException: java.lang.RuntimeException at ... Caused by: java.lang.RuntimeException at ...  completeExceptionally CompletableFuture\u0026lt;String\u0026gt; future = CompletableFuture.supplyAsync(() -\u0026gt; { try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); } log.info(\u0026quot;do supplyAsync\u0026quot;); return \u0026quot;Hello\u0026quot;; }); future.completeExceptionally(new RuntimeException(\u0026quot;Failed\u0026quot;)); future.get(); // This line will cause ExecutionException  "
+},
+{
+	"uri": "https://wonha.github.io/en/tags/async/",
+	"title": "Async",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://wonha.github.io/en/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://wonha.github.io/en/tags/clound-foundry/",
+	"title": "Clound Foundry",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://wonha.github.io/en/tags/completablefuture/",
+	"title": "Completablefuture",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://wonha.github.io/en/tags/distributed-system/",
+	"title": "Distributed System",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://wonha.github.io/en/",
+	"title": "Documentation for Hugo Learn Theme",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://wonha.github.io/en/tags/java/",
+	"title": "Java",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://wonha.github.io/en/tags/mongodb/",
+	"title": "Mongodb",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://wonha.github.io/en/tags/multithreading/",
+	"title": "Multithreading",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://wonha.github.io/en/tags/paas/",
+	"title": "Paas",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://wonha.github.io/en/tags/perl-5/",
+	"title": "Perl 5",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://wonha.github.io/en/posts/",
+	"title": "Posts",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://wonha.github.io/en/tags/sharded-cluster/",
+	"title": "Sharded Cluster",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://wonha.github.io/en/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://wonha.github.io/en/tags/thread-pool/",
+	"title": "Thread Pool",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Documentation for Hugo Learn Theme</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 28 Dec 2018 23:38:24 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 30 Dec 2018 01:08:20 +0900</lastBuildDate>
     
 	<atom:link href="https://wonha.github.io/en/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>2018 Retrospective</title>
+      <link>https://wonha.github.io/en/posts/2018-retrospective/</link>
+      <pubDate>Sun, 30 Dec 2018 01:08:20 +0900</pubDate>
+      
+      <guid>https://wonha.github.io/en/posts/2018-retrospective/</guid>
+      <description>Retrospective 2018 무엇을 경험했는가 일년간 경험한것을 기술적인 요소들만 뽑아서 정리하면 3가지다. 1. 마이크로서비스 개발 2. 자바 기반 멀티스레딩 및 비동기 처리 3. 분산형 데이터베이스 모델링 및 최적화
+2017년 8월에 시작한 회사 프로젝트가 1년 3개월만에 일단락되었다. 간단하게 프로젝트를 설명하자면, 2017년 매상 6조원의 일본 최대규모급 호텔/항공권/버스/렌트카 예약 서비스를 다시 개발하는 프로젝트였다. 기존의 서비스는 그대로 유지한채, 문자 그대로 제로베이스에서 스펙, 데이터 모델링 등 모든것을 처음부터 새로 만들어서 기존의 서비스와 스위칭하는 야심찬 대규모 프로젝트이다.</description>
+    </item>
     
     <item>
       <title>Perl5</title>
